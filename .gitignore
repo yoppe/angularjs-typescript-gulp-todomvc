@@ -3,6 +3,7 @@
 /bin
 /obj
 /.idea
+/release/*
 
 node_modules/*
 

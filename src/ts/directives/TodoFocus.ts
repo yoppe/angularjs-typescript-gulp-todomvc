@@ -1,21 +1,23 @@
 /// <reference path='../_all.ts' />
-var todos;
-(function (todos) {
+
+module todos {
     'use strict';
+
     /**
      * Directive that places focus on the element it is applied to when the expression it binds to evaluates to true.
      */
-    function todoFocus($timeout) {
+    export function todoFocus($timeout:ng.ITimeoutService):ng.IDirective {
         return {
-            link: function ($scope, element, attributes) {
-                $scope.$watch(attributes.todoFocus, function (newval) {
+            link: ($scope:ng.IScope, element:JQuery, attributes:any) => {
+                $scope.$watch(attributes.todoFocus, newval => {
                     if (newval) {
-                        $timeout(function () { return element[0].focus(); }, 0, false);
+                        $timeout(() => element[0].focus(), 0, false);
                     }
                 });
             }
         };
     }
-    todos.todoFocus = todoFocus;
+
     todoFocus.$inject = ['$timeout'];
-})(todos || (todos = {}));
+
+}
